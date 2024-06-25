@@ -19,19 +19,3 @@ Welcome to the Terraform Commands repository! This README provides a comprehensi
 ## Introduction
 
 Terraform is an open-source infrastructure as code (IaC) tool that allows you to define and provision infrastructure using a high-level configuration language. This repository contains Terraform configurations and demonstrates the use of Terraform commands to manage cloud resources.
-
-## Prerequisites
-
-Before you begin, ensure you have met the following requirements:
-
-- [Terraform](https://www.terraform.io/downloads.html) installed on your machine
-- An account with your chosen cloud provider (e.g., AWS, Azure, GCP)
-- Properly configured cloud provider credentials
-
-## Setup
-
-Clone this repository to your local machine:
-
-```bash
-git clone https://github.com/your-username/terraform-commands.git
-cd terraform-commands
