@@ -1,21 +1,28 @@
-# Terraform Commands - README
+# Terraform Multi EKS
 
-Welcome to the Terraform Commands repository! This README provides a comprehensive guide to the various Terraform commands used to manage and automate infrastructure deployments.
+This repository provides Terraform configurations to deploy two separate EKS (Elastic Kubernetes Service) clusters in AWS. These configurations allow for the creation of two distinct environments (e.g., development and production) with their own EKS clusters.
 
-## Table of Contents
 
-- [Introduction](#introduction)
-- [Prerequisites](#prerequisites)
-- [Setup](#setup)
-- [Usage](#usage)
-  - [Initializing the Configuration](#initializing-the-configuration)
-  - [Planning the Infrastructure](#planning-the-infrastructure)
-  - [Applying the Configuration](#applying-the-configuration)
-  - [Destroying the Infrastructure](#destroying-the-infrastructure)
-  - [Other Useful Commands](#other-useful-commands)
-- [Contributing](#contributing)
-- [License](#license)
+- [Terraform](https://www.terraform.io/downloads.html)
+- [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html)
+- [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
 
-## Introduction
+## Repository Structure
 
-Terraform is an open-source infrastructure as code (IaC) tool that allows you to define and provision infrastructure using a high-level configuration language. This repository contains Terraform configurations and demonstrates the use of Terraform commands to manage cloud resources.
+```plaintext
+terraform-multi-eks/
+├── environments/
+│   ├── development/
+│   │   ├── main.tf
+│   │   ├── variables.tf
+│   │   ├── outputs.tf
+│   ├── production/
+│   │   ├── main.tf
+│   │   ├── variables.tf
+│   │   ├── outputs.tf
+├── modules/
+│   ├── eks/
+│   │   ├── main.tf
+│   │   ├── variables.tf
+│   │   ├── outputs.tf
+├── README.md
