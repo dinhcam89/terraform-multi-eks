@@ -8,7 +8,7 @@ This repository provides Terraform configurations to deploy two separate EKS (El
 - [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
 - [Terraform AWS EKS Module](https://github.com/terraform-aws-modules/terraform-aws-eks)
 - [AWS Documentation](https://docs.aws.amazon.com/eks/)
-- 
+  
 ## Repository Structure
 
 ```plaintext
