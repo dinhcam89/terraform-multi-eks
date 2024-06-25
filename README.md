@@ -25,4 +25,3 @@ terraform-multi-eks/
 │   │   ├── main.tf
 │   │   ├── variables.tf
 │   │   ├── outputs.tf
-├── README.md
