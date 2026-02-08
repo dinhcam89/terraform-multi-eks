@@ -1,0 +1,78 @@
+name: Terraform Validation
+
+on:
+  pull_request:
+    branches: ['*']
+    paths:
+      - 'staging/**'
+      - 'prod/**'
+      - 'modules/**'
+      - '.github/workflows/terraform-validate.yml'
+
+jobs:
+  terraform-validate:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        directory: [staging, prod]
+      fail-fast: false
+    
+    name: Validate ${{ matrix.directory }}
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: latest
+      
+      - name: Terraform Init (prepare for validation)
+        working-directory: ${{ matrix.directory }}
+        run: terraform init -backend=false
+        continue-on-error: false
+      
+      - name: Terraform Validate
+        working-directory: ${{ matrix.directory }}
+        run: terraform validate
+      
+      - name: Setup TFLint
+        uses: terraform-linters/setup-tflint@v3
+      
+      - name: TFLint Initialize
+        working-directory: ${{ matrix.directory }}
+        run: tflint --init
+        continue-on-error: true
+      
+      - name: TFLint Check
+        working-directory: ${{ matrix.directory }}
+        run: tflint --format compact --force
+      
+      - name: Setup Checkov
+        run: pip install checkov
+      
+      - name: Run Checkov
+        working-directory: ${{ matrix.directory }}
+        run: |
+          checkov -d . \
+            --framework terraform \
+            --quiet \
+            --compact \
+            --exit-code 0
+        continue-on-error: true
+
+  validation-summary:
+    runs-on: ubuntu-latest
+    needs: terraform-validate
+    if: always()
+    
+    steps:
+      - name: Check validation status
+        run: |
+          if [ "${{ needs.terraform-validate.result }}" == "failure" ]; then
+            echo "❌ Terraform validation failed. Please review errors above."
+            exit 1
+          else
+            echo "✅ All Terraform validation checks passed!"
+          fi

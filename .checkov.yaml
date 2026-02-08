@@ -1,0 +1,21 @@
+framework: terraform
+
+check:
+  # Check for common security issues
+  - CKV_AWS_1      # IAM - Ensure IAM policies are attached only users groups or roles
+  - CKV_AWS_21     # EC2 - Ensure security group/nacl changes are logged
+  - CKV_AWS_24     # EC2 - Ensure no security groups allow ingress from 0.0.0.0:0 to port 22
+  - CKV_AWS_40     # IAM - Ensure IAM policies are attached only users groups or roles
+  - CKV_AWS_42     # IAM - Ensure no root access key
+  - CKV_AWS_63     # EKS - Ensure Amazon EKS control plane logging enabled for all log types
+  - CKV_AWS_64     # EKS - Ensure Amazon EKS clusters are created with logging enabled
+  - CKV_AWS_73     # EC2 - Ensure security group does not allow ingress from 0.0.0.0/0 on port 443
+  - CKV_AWS_77     # VPC - Ensure that all VPCs Flow Logs is enabled for every VPC
+  - CKV_AWS_85     # ECS - Ensure ECS Task Definition has network mode set to awsvpc
+  
+skip-check:
+  # Skip checks that may not apply to your setup or be too strict for POC
+  - CKV_AWS_77     # VPC Flow Logs - optional for POC, expensive
+
+quiet: true
+compact: true
