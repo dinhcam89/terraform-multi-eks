@@ -1,6 +1,6 @@
 # Multi-Environment Terraform EKS Deployment
 
-A production-ready Terraform infrastructure-as-code (IaC) project for deploying AWS EKS (Elastic Kubernetes Service) clusters with VPC networking across multiple environments (staging and production).
+A Terraform infrastructure-as-code (IaC) project for deploying AWS EKS (Elastic Kubernetes Service) clusters with VPC networking across multiple environments (staging and production).
 
 ## 📋 Project Overview
 
@@ -322,7 +322,3 @@ terraform destroy -auto-approve  # Auto-approve destruction
 ## 📄 License
 
 ---
-
-**⚠️ Note:** This is a POC (Proof of Concept) project. Ensure security best practices are reviewed before using in production environments.
-
-**Questions?** Check the troubleshooting section or review the individual `.tf` files for detailed resource configuration.
