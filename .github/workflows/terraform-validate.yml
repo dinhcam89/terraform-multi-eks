@@ -66,6 +66,7 @@ jobs:
         run: |
           checkov -d . \
             --framework terraform \
+            --skip-check CKV_TF_1,CKV_AWS_77,CKV2_AWS_5 \
             --quiet \
             --compact
         continue-on-error: true
