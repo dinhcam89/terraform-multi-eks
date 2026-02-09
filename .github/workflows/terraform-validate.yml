@@ -1,6 +1,13 @@
 name: Terraform Validation
 
 on:
+  push:
+    branches: ['*']
+    paths:
+      - 'staging/**'
+      - 'prod/**'
+      - 'modules/**'
+      - '.github/workflows/terraform-validate.yml'
   pull_request:
     branches: ['*']
     paths:
