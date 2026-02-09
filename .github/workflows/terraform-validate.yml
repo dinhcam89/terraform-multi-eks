@@ -65,8 +65,7 @@ jobs:
           checkov -d . \
             --framework terraform \
             --quiet \
-            --compact \
-            --exit-code 0
+            --compact
         continue-on-error: true
 
   validation-summary:
