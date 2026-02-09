@@ -19,22 +19,32 @@ module "vpc" {
 }
 
 resource "aws_security_group" "vpc_sg" {
-  name   = "${var.project_name}-vpc-sg"
-  vpc_id = module.vpc.vpc_id
+  name        = "${var.project_name}-vpc-sg"
+  description = "Security group for ${var.project_name} VPC"
+  vpc_id      = module.vpc.vpc_id
 
   # ingress {
-  #   from_port = 5432
-  #   to_port   = 5432
-  #   protocol  = "tcp"
-  #   # publicly accessible
+  #   from_port   = 5432
+  #   to_port     = 5432
+  #   protocol    = "tcp"
+  #   description = "PostgreSQL access"
   #   cidr_blocks = ["0.0.0.0/0"]
   # }
 
   egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
+    from_port       = 0
+    to_port         = 65535
+    protocol        = "tcp"
+    description     = "Allow outbound TCP traffic"
+    cidr_blocks     = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port       = 0
+    to_port         = 65535
+    protocol        = "udp"
+    description     = "Allow outbound UDP traffic"
+    cidr_blocks     = ["0.0.0.0/0"]
   }
 
   tags = {

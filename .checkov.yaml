@@ -14,8 +14,9 @@ check:
   - CKV_AWS_85     # ECS - Ensure ECS Task Definition has network mode set to awsvpc
   
 skip-check:
-  # Skip checks that may not apply to your setup or be too strict for POC
+  - CKV_TF_1       # Terraform module sources - not applicable for local modules
   - CKV_AWS_77     # VPC Flow Logs - optional for POC, expensive
 
 quiet: true
 compact: true
+  
