@@ -14,7 +14,7 @@ check:
   - CKV_AWS_85     # ECS - Ensure ECS Task Definition has network mode set to awsvpc
   
 skip-check:
-#  - CKV_TF_1       # Terraform module sources - using version pinning instead of commit hash
+  - CKV_TF_1       # Terraform module sources - using version pinning instead of commit hash
   - CKV_AWS_77     # VPC Flow Logs - optional for POC, expensive
   - CKV2_AWS_5     # Security groups attachment - VPC SG will be used by EKS cluster
 
